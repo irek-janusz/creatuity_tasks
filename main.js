@@ -265,7 +265,6 @@ $('document').ready(function() {
         if (prevNumber >= 0) {
             calcDisplay = calcDisplay.slice(0, (prevNumber.toString().length * (-1)))
         } else {
-            console.log('problem here')
             calcDisplay = calcDisplay.slice(0, (prevNumber.toString().length * (-1) - 2))
         }
         // Modify number to show
@@ -284,3 +283,141 @@ $('document').ready(function() {
         $('#calculatorResult').text(result)
     }
 })
+
+/////////////////////////////////////////// END OF CALCULATOR
+
+
+
+
+/////////////////////////////////////////// CRUD
+var alertDismissingTimeout
+$('document').ready(function() {
+    const buttons = (id) => '<div class="d-flex justify-content-between"> \
+        <button id="view'+id+'" onclick="handleClick(this.id)" role="button" class="btn btn-sm btn-outline-success">View</button> \
+        <button id="delete'+id+'" onclick="handleClick(this.id)" role="button" class="btn btn-sm btn-outline-danger">Delete</button> \
+        </div>'
+    $.get('http://dummy.restapiexample.com/api/v1/employees', function(data) {
+        if (data.status === 'success') {
+            let trHtml = ''
+            $.each(data.data, function(i, item) {
+                trHtml += '<tr><td>' + item.id + 
+                '</td><td>' + item.employee_name + 
+                '</td><td>' + (new Intl.NumberFormat().format(item.employee_salary)) + ' zł' +
+                '</td><td>' + item.employee_age + '</td>' +
+                '<td>' + buttons(item.id) + '</td>';
+            })
+            $('table tbody').append(trHtml)
+        }
+    })
+
+})
+
+function handleClick(id) {
+    if (id.includes('view')) {
+        const employeeId = id.replace('view', '')
+        viewEmployee(employeeId)
+    } else {
+        const employeeId = id.replace('delete', '')
+        deleteEmployee(employeeId)
+    }
+}
+
+const viewEmployee = (id) => {
+    $('#employeeModalBtn').text('Update')
+    $('#employeeModalBtn').attr('onclick', "updateEmployee()")
+    $.get('http://dummy.restapiexample.com/api/v1/employee/'+id, function(data) {
+        const updateUrl = `http://dummy.restapiexample.com/api/v1/update/${id}`
+        $('#updateEmployeeForm').attr('action', updateUrl) 
+        $('#employeeName').val(data.data.employee_name)
+        $('#employeeSalary').val(data.data.employee_salary)
+        $('#employeeAge').val(data.data.employee_age)
+        $('#viewModal').modal('show')
+    })
+}
+
+const openCreateModal = () => {
+    cleanUp()
+    $('#employeeModalBtn').text('Create')
+    $('#updateEmployeeForm').attr('action', 'http://dummy.restapiexample.com/api/v1/create')
+    $('#employeeModalBtn').attr('onclick', "createEmployee()")
+    $('#viewModal').modal('show')
+}
+
+const createEmployee = () => {
+    const name = $('#employeeName').val()
+    const salary = $('#employeeSalary').val()
+    const age = $('#employeeAge').val()
+
+    if (name && salary && age) {
+        $.post($('#updateEmployeeForm').attr('action'), {name, salary, age}, function(data) {
+            console.log(data)
+            showAlertMessage('alert-success', 'Employee successfully created')
+        })
+    }
+
+    $('#viewModal').modal('hide')
+}
+
+const updateEmployee = () => {    
+    $.ajax({
+        url: $('#updateEmployeeForm').attr('action'),
+        type: 'PUT',
+        data: {
+            'name': $('#employeeName').val(),
+            'salary': $('#employeeSalary').val(),
+            'age': $('#employeeAge').val()
+        },
+        success: function() {
+            console.log('Updated Data')
+        },
+        fail: function() {
+            console.log('Cannot update at the moment')
+        }
+    })
+    $('#viewModal').modal('hide')
+}
+
+const deleteEmployee = (id) => {
+    $('#deleteBtn').attr('data-id', id)
+    $('#deleteModal').modal('show')
+}
+
+const removeEmployee = () => {
+    $.ajax({
+        url: `http://dummy.restapiexample.com/api/v1/delete/${$('#deleteBtn').attr('data-id')}`,
+        type: 'DELETE',
+        success: function(data) {
+            showAlertMessage('alert-success', 'Employee has been removed')
+        },
+        fail: function(data) {
+            showAlertMessage('alert-danger', 'Server is currently unavailable. Please try again later')
+        }
+    })
+    $('#deleteModal').modal('hide')
+}
+
+const showAlertMessage = (alert, message) => {
+    $('#crudAlert')
+        .attr('hidden', false)
+        .removeClass('alert-warning alert-success alert-danger')
+        .addClass(alert)
+        .text(message)
+
+        alertDismissingTimeout = setTimeout(() => {
+        if (!$('#crudAlert').is(':hidden')) {
+            $('#crudAlert').attr('hidden', true)
+        }
+    }, 3000);
+}
+
+const cleanUp = () => {
+    if (alertDismissingTimeout) {
+        clearTimeout(alertDismissingTimeout)
+        alertDismissingTimeout = null
+        $('#crudAlert').attr('hidden', true)
+    }
+
+    $('#employeeName').val('')
+    $('#employeeSalary').val('')
+    $('#employeeAge').val('')
+}

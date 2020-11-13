@@ -1,1 +1,122 @@
-test
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./main.css">
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="./main.js"></script>
+
+    <title>Creatuity Tasks</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li class="nav-item"><a class="nav-link" href="./palindrome.html">Palindrome</a></li>
+            <li class="nav-item"><a class="nav-link" href="./decoder.html">Decoder</a></li>
+            <li class="nav-item"><a class="nav-link" href="./calculator.html">Calculator</a></li>
+            <li class="nav-item active"><a class="nav-link" href="./crud.html">CRUD</a></li>
+        </ul>
+    </nav>
+
+        <main>
+
+            <!-- CRUD -->
+
+            <div class="card p-2 w-50 palindrome-card">
+                <div id="palindromeAlert" role="alert" class="alert palindrome-alert" hidden>
+                </div>
+
+                <div class="palindrome-main">
+                    <h1 class="mb-4">Task 4: CRUD Interface</h1>
+
+                    <div id="crudAlert" role="alert" class="container-fluid alert alert-fade-in" hidden></div>
+
+                    <div class="container d-flex mb-2 justify-content-end p-0">
+                        <button role="button" class="btn btn-sm btn-outline-primary" onclick="openCreateModal()">Create Employee</button>
+                    </div>
+                    <table id="#crudTable" class="table table-hover table-dark table-striped">
+                        <thead>
+                            <tr>
+                                <th class="scope">#</th>
+                                <th class="scope">Employee Name</th>
+                                <th class="scope">Salary</th>
+                                <th class="scope">Age</th>
+                                <th class="scope">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+
+                </div>
+            </div>
+
+            <!-- END OF CRUD -->
+
+            <!-- VIEW MODAL -->
+
+            <div id="viewModal" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Employee Data</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div id="modalBody" class="modal-body">
+                        <form id="updateEmployeeForm" class="form-group" action="">
+                            <input type="hidden" name="_METHOD" value="PUT"/>
+
+                            <label for="employeeName">Employee Name</label>
+                            <input type="text" class="form-control mb-1" id="employeeName" placeholder="Enter Employee's Name">
+
+                            <label for="employeeSalary">Employee Salary</label>
+                            <input type="number" class="form-control mb-1" id="employeeSalary" placeholder="Enter Employee's Salary">
+
+                            <label for="employeeAge">Employee Age</label>
+                            <input type="number" class="form-control mb-1" id="employeeAge" placeholder="Enter Employee's Age">
+                        </form>                        
+                    </div>
+                    <div id="modalFooter" class="modal-footer">
+                        <button id="employeeModalBtn" onclick="updateEmployee()" role="button" class="btn btn-small btn-outline-success">Update</button>
+                        <button role="button" class="btn btn-small btn-outline-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            <!-- END OF VIEW MODAL -->
+
+            <!-- DELETE MODAL -->
+
+            <div id="deleteModal" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Are you sure?</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div id="modalBody" class="modal-body">
+                        <p>This is a destructive and irreversible process.</p>
+                        <p>Proceeding will remove the user from the database.</p>
+                    </div>
+                    <div id="modalFooter" class="modal-footer">
+                        <button id='deleteBtn' data-id="" onclick="removeEmployee(this.data-id)" role="button" class="btn btn-small btn-outline-danger">Delete</button>
+                        <button role="button" class="btn btn-small btn-outline-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            <!-- END OF DELETE MODAL -->
+
+        </main>
+    
+</body>
+</html>
