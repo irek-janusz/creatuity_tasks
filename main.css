@@ -40,6 +40,10 @@ nav > ul {
     box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.4);
 }
 
+.nav-item.active {
+    background-color: plum;
+}
+
 .nav-link {
     text-decoration: none;
     color: white;
@@ -117,6 +121,7 @@ main {
     align-items: center;
     margin: 0;
     padding: 0;
+    transition: all .5s;
 }
 
 .row {
@@ -146,12 +151,10 @@ main {
 
 .operation {
     background: linear-gradient(135deg, #8c5ad6, #a762c8);
-    /* background-color: #8c51dd; */
 }
 
 .standard {
     background: linear-gradient(-45deg, #fff, #f1f1f1);
-    /* background-color: #f2f2f2; */
 }
 
 .digit-area {
@@ -180,5 +183,6 @@ main {
 
 .column:hover {
     cursor: pointer;
+    background: plum;
 }
 /* END OF CALCULATOR */

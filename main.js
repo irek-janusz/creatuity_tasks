@@ -125,17 +125,19 @@ const palindromeTextAreaChange = () => {
 
 $('document').ready(function() {
     let num1 = "", num2 = "", operation, consecutivePercentageClicked = 0, calcDisplay = "",
-        operations = ['+', '-', '/', 'x'], digits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], previousClick
+        operations = ['+', '-', '/', 'x'], digits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     
     $('.column').click(function() {
         const clickedValue = $(this).text()
-        // const digits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-        // let operations = ['+', '-', '/', 'x']
 
         // Digit
         if (digits.indexOf(clickedValue) > -1 || clickedValue === '.') {
-            setNumbers(clickedValue)
-            calcDisplay += clickedValue
+            if (num2 && clickedValue === '.' && num2.indexOf('.') > -1) return
+            else if (!num2 && num1 && clickedValue === '.' && num1.indexOf('.') > -1) return
+            else {
+                setNumbers(clickedValue)
+                calcDisplay += clickedValue       
+            }
         }
 
         // + - / x 
@@ -248,15 +250,28 @@ $('document').ready(function() {
     }
 
     const negateNumber = () => {
+        let numToShow, prevNumber
         if (num2) {
-            calcDisplay = calcDisplay.slice(0, (-1 * num2.length))
-            num2 *= -1
-            calcDisplay += num2
-        } else if (num1 && !operation) {
-            calcDisplay = calcDisplay.slice(0, (-1 * num1.length))
-            num1 *= -1
-            calcDisplay += num1
+            prevNumber = num2
+            num2 *= (-1)
+            numToShow = num2
+        } else {
+            prevNumber = num1
+            num1 *= (-1)
+            numToShow = num1
         }
+
+        // Slice previous number
+        if (prevNumber >= 0) {
+            calcDisplay = calcDisplay.slice(0, (prevNumber.toString().length * (-1)))
+        } else {
+            console.log('problem here')
+            calcDisplay = calcDisplay.slice(0, (prevNumber.toString().length * (-1) - 2))
+        }
+        // Modify number to show
+        numToShow = numToShow < 0 ? `(${numToShow})` : numToShow
+        // Add number to show
+        calcDisplay += numToShow
     }
 
     const calculateResult = (num1, num2, operation) => {
@@ -267,33 +282,5 @@ $('document').ready(function() {
             '/': (num1 / num2)
         }[operation]
         $('#calculatorResult').text(result)
-    }
-
-    const setCalculatorDisplay = (clickedValue) => {
-        let calculatorResult = $('#memoryDigits').text()
-
-
-        // if (operations.indexOf(clickedValue) > -1) {
-        //     $('#memoryDigits').text(calculatorResult + ' ')
-        //     calculatorResult = $('#memoryDigits').text()
-        // }
-
-        // if (operation && operations.indexOf(clickedValue) > -1) {
-        //     calculatorResult = calculatorResult.slice(0, -2)
-        //     $('#memoryDigits').text(calculatorResult + clickedValue + ' ')
-        // } else {
-        //     $('#memoryDigits').text(calculatorResult + clickedValue)
-        // }
-    }
-
-    const setCalculatorResult = (clickedValue) => {
-        if (!Number.isInteger(parseInt(clickedValue))) {
-            // Save current value of result 
-            console.log("here")
-            return
-        }
-        let calculatorResult = $('#memoryDigits').text()
-
-        $('#memoryDigits').text(calculatorResult + clickedValue)
     }
 })
