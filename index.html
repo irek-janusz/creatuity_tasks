@@ -1,0 +1,52 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./main.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="./main.js"></script>
+
+    <title>Creatuity Tasks</title>
+</head>
+<body>
+        <nav>
+            <ul>
+                <li class="nav-item"><a class="nav-link" href="./palindrome.html">Palindrome</a></li>
+                <li class="nav-item"><a class="nav-link" href="./decoder.html">Decoder</a></li>
+                <li class="nav-item"><a class="nav-link" href="./calculator.html">Calculator</a></li>
+                <li class="nav-item"><a class="nav-link" href="./crud.html">CRUD</a></li>
+            </ul>
+        </nav>
+
+        <main>
+
+            <!-- PALINDROME -->
+
+            <div class="card p-2 w-50 palindrome-card">
+                <div id="palindromeAlert" role="alert" class="alert palindrome-alert" hidden>
+                </div>
+
+                <div class="palindrome-main">
+                    <h1>Palindrome</h1>
+                    
+                    <span>The form below allows you to check if written text is a palindrome</span>
+                    <span>Simply, write a text in the text area below</span>
+                    <span>And when ready, click the 'Check' button</span>
+                    
+                    <h3>Write the text you want to check</h3>
+                    <textarea onkeydown="palindromeTextAreaChange()" name="palindrome" id="palindromeTextArea" cols="30" rows="5"></textarea>
+
+                    <button onclick="checkPalindrome()" role="button" class="mt-2 btn btn-outline-primary">Check</button>
+
+                </div>
+            </div>
+
+            <!-- END OF PALINDROME -->
+
+        </main>
+    
+</body>
+</html>
