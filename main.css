@@ -7,18 +7,63 @@ body {
     font-family: sans-serif;
 }
 
-.btn:active {
-    outline: transparent;
+.animation-type {
+    overflow: hidden;
+    white-space: nowrap;
+    width: 14ch;
+    border-right: 3px solid;
+    animation: typewright 2S steps(15), cursor .5s infinite alternate;
+}
+
+@keyframes typewright {
+    from {
+        width: 0;
+    }
+}
+
+@keyframes cursor {
+    50% {
+        border-color: transparent;
+    }
+}
+
+.fadeIn {
+    animation: textAppear 1s;
+    animation-fill-mode: both;
+}
+
+.wait-2s {
+    animation-delay: 2s;
+}
+
+.wait-3s {
+    animation-delay: 3s;
+}
+
+@keyframes textAppear {
+    from { opacity: 0;}
+    to { opacity: 1; }
 }
 
 /* NAVBAR */
 
 nav {
+    width: 100%;
     background-color: cadetblue;
     padding: 1em;
 }
 
+@media screen and (max-width: 1065px) {
+    .buttons {
+        flex-direction: column;
+    }
+    .buttons > button:first-child {
+        margin-bottom: 10px;
+    }
+}
+
 nav > ul {
+    width: 100%;
     display: flex;
     justify-content: space-around;
     font-weight: bold;
@@ -30,18 +75,12 @@ nav > ul {
     justify-content: center;
     align-items: center;
     min-height: 50px;
-    min-width: 150px;
     border-radius: 20px;
     transition: 2s;
 }
 
-.nav-item:hover {
-    background-color: blue;
-    box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.4);
-}
-
 .nav-item.active {
-    background-color: plum;
+    background-color:rgb(61, 97, 99);
 }
 
 .nav-link {
@@ -60,43 +99,55 @@ main {
     padding: 2em 2em;
 }
 
-/* END OF MAIN SECTION */
+.height-100 {
+    height: 100%;
+}
 
-/* PALINDROM */
-.palindrome-card {
+.task-card {
+    min-width: 450px;
     box-shadow: 1px 4px 10px rgba(0,0,0,0.6);
 }
-.palindrome-main {
+
+.centered-stack {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.palindrome-main > h3 {
+.alert-fade-in {
+    animation: fadeIn 3s;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 0;}
+    50% {
+        opacity: 1;
+    }
+}
+
+/* END OF MAIN SECTION */
+
+/* PALINDROM */
+.centered-stack > h3 {
     padding: 1em;
 }
 
-.palindrome-main > textarea {
+.centered-stack > textarea {
     padding: 1em;
-}
-
-.palindrome-alert {
-    opacity: 0;
-    animation: palindromeAppear 3s;
-}
-
-@keyframes palindromeAppear {
-    10% {
-        opacity: 1;
-    }
-    70% {
-        opacity: 1;
-    }
 }
 
 /* END OF PALINDROM */
 
+
+/* DECODER */
+
+.text-area-responsive {
+    max-width: 100%;
+}
+
+/* END OF DECODER */
 
 
 /* CALCULATOR */
@@ -189,14 +240,8 @@ main {
 
 /* CRUD */
 
-.alert-fade-in {
-    animation: fadeIn 3s;
+.max-150 {
+    max-width: 150px;
 }
 
-@keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity: 0;}
-    50% {
-        opacity: 1;
-    }
-}
+/* END OF CRUD */

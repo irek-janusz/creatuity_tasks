@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="./main.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="./main.js"></script>
@@ -25,17 +25,25 @@
 
             <!-- PALINDROME -->
 
-            <div class="card p-2 w-50 palindrome-card">
-                <div id="palindromeAlert" role="alert" class="alert palindrome-alert" hidden>
+            <div class="card p-2 w-50 task-card">
+                <div id="palindromeAlert" role="alert" class="alert alert-fade-in" hidden>
                 </div>
 
-                <div class="palindrome-main">
-                    <h1>Palindrome</h1>
+                <div class="centered-stack">
+                    <h1>Task 1: Palindrome</h1>
                     
-                    <span>The form below allows you to check if written text is a palindrome</span>
-                    <span>Simply, write a text in the text area below</span>
-                    <span>And when ready, click the 'Check' button</span>
-                    
+                    <div class="d-flex flex-column">
+                        <div class="row w-100">
+                            <div class="col text-center">The form below allows you to check if written text is a palindrome</div>
+                        </div>
+                        <div class="row w-100">
+                            <div class="col text-center">Simply, write a text in the text area below</div>
+                        </div>
+                        <div class="row w-100">
+                            <div class="col text-center">And when ready, click the 'Check' button</div>
+                        </div>
+                    </div>
+
                     <h3>Write the text you want to check</h3>
                     <textarea onkeydown="palindromeTextAreaChange()" name="palindrome" id="palindromeTextArea" cols="30" rows="5"></textarea>
 

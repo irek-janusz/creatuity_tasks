@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="./main.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="./main.js"></script>
@@ -25,17 +25,17 @@
 
             <!-- DECODER -->
 
-            <div class="card p-2 w-50 palindrome-card">
+            <div class="card p-2 w-50 task-card">
 
-                <div class="palindrome-main">
-                    <h1>Decoder</h1>
+                <div class="centered-stack">
+                    <h1>Task 2: Decoder</h1>
                     
                     <span>The form below allows you to decode a secret message</span>
                     <span>Simply, write a text in the text area below</span>
                     <span>And when ready, click the 'Decode' button</span>
                     
                     <h3>Write the message you want to decode</h3>
-                    <textarea onkeyup="textAreaChange('#decoderTextArea', '#decoderAlert')" id="decoderTextArea" cols="50" rows="5"></textarea>
+                    <textarea class="text-area-responsive" onkeyup="textAreaChange('#decoderTextArea', '#decoderAlert')" id="decoderTextArea" cols="50" rows="5"></textarea>
 
                     <button onclick="decodeMessage()" role="button" class="my-2 btn btn-outline-primary">Decode</button>
 
@@ -46,16 +46,16 @@
 
             <!-- ENCODER -->
 
-            <div class="card mt-4 p-2 w-50 palindrome-card">
-                <div class="palindrome-main">
+            <div class="card mt-4 p-2 w-50 task-card">
+                <div class="centered-stack">
                     <h1>Encoder</h1>
 
                     <span>Following up on the secret message from the task</span>
                     <span>This form will allow you to create a secret message</span>
                     <span>Have fun!</span>
 
-                    <textarea onkeyup="textAreaChange('#encoderTextArea', '#encoderAlert')" id="encoderTextArea" cols="50" rows="5"></textarea>
-                    <button onclick="encodeMessage()" role="button" class="mt-2 btn btn-outline-success">Encode</button>
+                    <textarea class="text-area-responsive" onkeyup="textAreaChange('#encoderTextArea', '#encoderAlert')" id="encoderTextArea" cols="50" rows="5"></textarea>
+                    <button onclick="encodeMessage()" role="button" class="my-2 btn btn-outline-success">Encode</button>
 
                     <div id="encoderAlert" role="alert" class="alert" hidden></div>
                 </div>
